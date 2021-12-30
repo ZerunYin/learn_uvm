@@ -42,7 +42,7 @@
 //------------------------------------------------------------------------------
 
 // @uvm-ieee 1800.2-2020 auto 5.2
-virtual class uvm_void;
+virtual class uvm_void; // Y: definition of uvm_void
 endclass
 
 // Append/prepend symbolic values for order-dependent APIs

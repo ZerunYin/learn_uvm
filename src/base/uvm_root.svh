@@ -337,7 +337,7 @@ class uvm_root extends uvm_component;
 		adapter.accept(this, v, p);
 	endfunction
 
-endclass
+endclass : uvm_root
 
 //-----------------------------------------------------------------------------
 // IMPLEMENTATION
