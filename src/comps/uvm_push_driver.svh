@@ -77,8 +77,8 @@ class uvm_push_driver #(type REQ=uvm_sequence_item,
   function void check_port_connections();
     if (req_export.size() != 1)
     uvm_report_fatal("Connection Error",
-                     $sformatf("Must connect to seq_item_port(%0d)",
-                               req_export.size()), UVM_NONE);
+                     $sformatf("Must connect to seq_item_port(%0d)", req_export.size()),
+                     UVM_NONE);
   endfunction
   
   virtual function void end_of_elaboration_phase(uvm_phase phase);

@@ -43,7 +43,7 @@ virtual class uvm_env extends uvm_component;
 
   // @uvm-ieee 1800.2-2020 auto 13.3.2
   function new (string name="env", uvm_component parent=null);
-    super.new(name,parent);
+    super.new(name, parent);
   endfunction
 
 endclass
