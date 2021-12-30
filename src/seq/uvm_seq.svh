@@ -36,3 +36,4 @@ typedef uvm_sequence  #(uvm_sequence_item, uvm_sequence_item) uvm_default_sequen
 typedef uvm_sequencer #(uvm_sequence_item, uvm_sequence_item) uvm_default_sequencer_type;
 typedef uvm_driver    #(uvm_sequence_item, uvm_sequence_item) uvm_default_driver_type;
 typedef uvm_sequencer_param_base #(uvm_sequence_item, uvm_sequence_item) uvm_default_sequencer_param_type;
+// Y: above 4 uvm_default_.*_type are directly defined in uvm_pkg

@@ -49,7 +49,7 @@ typedef class uvm_parent_child_link;
 // sequence item execution. These methods in the component base class will
 // call into the corresponding methods in this class to set the corresponding
 // timestamps (~accept_time~, ~begin_time~, and ~end_time~), trigger the
-// corresponding event (<begin_event> and <end_event>, and, if enabled,
+// corresponding event (<begin_event> and <end_event>), and, if enabled,
 // record the transaction contents to a vendor-specific transaction database.
 //
 // Note that get_next_item/item_done when called on a uvm_seq_item_pull_port
@@ -211,8 +211,8 @@ virtual class uvm_transaction extends uvm_object;
 
   // @uvm-ieee 1800.2-2020 auto 5.4.2.4
   extern function int begin_tr (
-     time begin_time = 0
-     , int parent_handle = 0
+     time begin_time = 0,
+     int parent_handle = 0
   );
 
   
@@ -446,7 +446,7 @@ virtual class uvm_transaction extends uvm_object;
 
 
   extern protected function int m_begin_tr (time    begin_time=0, 
-                                                int parent_handle=0);
+                                            int     parent_handle=0);
 
   local int m_transaction_id = -1;
 
@@ -456,7 +456,7 @@ virtual class uvm_transaction extends uvm_object;
 
   local uvm_component initiator;
   local uvm_tr_stream stream_handle;
-  local uvm_recorder      tr_recorder;
+  local uvm_recorder  tr_recorder;
 
 endclass
 
@@ -671,13 +671,10 @@ endfunction
 // -----------
 
 function int uvm_transaction::begin_tr (
-     time begin_time = 0
-     , int parent_handle = 0
-); 
-   return m_begin_tr(
-      begin_time 
-      , parent_handle 
-   );
+  time begin_time = 0,
+  int parent_handle = 0
+); // Y: delegated to m_begin_tr
+  return m_begin_tr(begin_time, parent_handle);
 endfunction
 
 // begin_child_tr
@@ -692,8 +689,7 @@ endfunction
 // m_begin_tr
 // -----------
 
-function int uvm_transaction::m_begin_tr (time begin_time=0, 
-                                              int parent_handle=0);
+function int uvm_transaction::m_begin_tr (time begin_time=0, int parent_handle=0);
    time tmp_time = (begin_time == 0) ? $realtime : begin_time;
    uvm_recorder parent_recorder;
 
@@ -739,7 +735,7 @@ function int uvm_transaction::m_begin_tr (time begin_time=0,
       m_begin_tr = 0;
    end
    
-   do_begin_tr(); //execute callback before event trigger
+   do_begin_tr(); // execute callback before event trigger
    
    begin
       uvm_event#(uvm_object) begin_event ;
